@@ -6,6 +6,7 @@ Release:	5
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://www.employees.org/~bmah/Software/pchar/%{name}-%{version}.tar.gz
+# Source0-md5:	e7b41a8eaf7972e1b19c214189c9ccef
 Patch0:		%{name}-ac_fixes.patch
 URL:		http://www.employees.org/~bmah/Software/pchar/
 BuildRequires:	autoconf
