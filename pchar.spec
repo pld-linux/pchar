@@ -3,7 +3,7 @@ Summary(pl):	Pchar: Narzêdzie do okre¶lania charakterystyk po³±czeñ sieciowych
 Name:		pchar
 Version:	1.4
 Release:	6
-License:	GPL
+License:	BSD
 Group:		Applications/Networking
 Source0:	http://www.employees.org/~bmah/Software/pchar/%{name}-%{version}.tar.gz
 # Source0-md5:	e7b41a8eaf7972e1b19c214189c9ccef
@@ -48,7 +48,6 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8}
 
 install pchar $RPM_BUILD_ROOT%{_bindir}/pchar
 install pchar.8 $RPM_BUILD_ROOT%{_mandir}/man8/pchar.8
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
