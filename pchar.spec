@@ -34,7 +34,7 @@ poprzez sieæ.
 %patch1 -p1
 
 %build
-cp -f /usr/share/autoconf/config.* .
+cp -f /usr/share/automake/config.* .
 %{__autoconf}
 CXXFLAGS="%{rpmcflags} -fno-exceptions -fno-rtti -fno-implicit-templates"
 %configure \
