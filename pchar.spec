@@ -2,7 +2,7 @@ Summary:	Pchar: A Tool for Measuring Net Path Characteristics
 Summary(pl):	Pchar: Narzêdzie do okre¶lania charakterystyk po³±czeñ sieciowych
 Name:		pchar
 Version:	1.4
-Release:	6
+Release:	7
 License:	BSD
 Group:		Applications/Networking
 Source0:	http://www.employees.org/~bmah/Software/pchar/%{name}-%{version}.tar.gz
@@ -34,6 +34,7 @@ poprzez sieæ.
 %patch1 -p1
 
 %build
+cp -f /usr/share/autoconf/config.* .
 %{__autoconf}
 CXXFLAGS="%{rpmcflags} -fno-exceptions -fno-rtti -fno-implicit-templates"
 %configure \
