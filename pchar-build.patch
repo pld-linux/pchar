@@ -1,0 +1,76 @@
+--- pchar-1.4/configure.in.orig	2004-04-04 16:11:59.000000000 +0200
++++ pchar-1.4/configure.in	2004-04-04 16:28:46.664277424 +0200
+@@ -134,7 +134,7 @@
+     if test "$with_ipv6" -a "$with_ipv6" != "yes" ; then
+ 	LDFLAGS="-L$with_ipv6/lib $LDFLAGS"
+     fi
+-    AC_CHECK_LIB(inet6, inet_pton)
++    AC_SEARCH_LIBS(inet_pton, inet6)
+ fi
+ 
+ dnl UCD SNMP support if desired.  If the user enabled --with-snmp,
+@@ -159,7 +159,7 @@
+ 	LDFLAGS="-L$with_snmp/lib $LDFLAGS"
+ 	CPPFLAGS="-I$with_snmp/include $CPPFLAGS"
+     fi
+-    AC_CHECK_LIB(snmp, snmp_sess_init)
++    AC_CHECK_LIB(netsnmp, snmp_sess_init)
+ fi
+ 
+ dnl pcap support if desired.  If the user enabled --with-pcap,
+--- pchar-1.4/pc.h.orig	2001-06-07 17:01:41.000000000 +0200
++++ pchar-1.4/pc.h	2004-04-04 16:32:55.534443408 +0200
+@@ -98,14 +98,16 @@
+ #define ICMP_UNREACH_FILTER_PROHIB	ICMP_PKT_FILTERED
+ 
+ #define ICMP_TIMXCEED		ICMP_TIME_EXCEEDED
++#endif /* glibc */
+ 
++#if (!(defined(__GLIBC__) && (__GLIBC__ >= 2))) || (defined _POSIX_SOURCE || defined _POSIX_C_SOURCE || defined _XOPEN_SOURCE || defined _XOPEN_SOURCE_EXTENDED || defined _GNU_SOURCE || defined _SVID_SOURCE)
+ // UDP
+ #define	uh_sport		source
+ #define	uh_dport		dest
+ #define	uh_ulen			len
+ #define uh_sum			check
++#endif
+ 
+-#endif /* glibc */
+ #endif /* linux */
+ 
+ // Make sure we have a definition for the maximum IP packet size.
+--- pchar-1.4/GetIfInfo.cc.orig	2001-03-26 19:59:55.000000000 +0200
++++ pchar-1.4/GetIfInfo.cc	2004-04-04 16:36:20.358305448 +0200
+@@ -24,15 +24,15 @@
+ #include "pc.h"
+ 
+ // UCD SNMP includes
+-#include "ucd-snmp/ucd-snmp-config.h"
+-#include "ucd-snmp/asn1.h"
+-#include "ucd-snmp/snmp_api.h"
+-#include "ucd-snmp/snmp_impl.h"
+-#include "ucd-snmp/snmp_client.h"
+-#include "ucd-snmp/mib.h"
+-#include "ucd-snmp/snmp.h"
+-#include "ucd-snmp/system.h"
+-#include "ucd-snmp/default_store.h"
++#include <net-snmp/net-snmp-config.h>
++#include <net-snmp/library/asn1.h>
++#include <net-snmp/library/snmp_api.h>
++#include <net-snmp/library/snmp_impl.h>
++#include <net-snmp/library/snmp_client.h>
++#include <net-snmp/library/mib.h>
++#include <net-snmp/library/snmp.h>
++#include <net-snmp/library/system.h>
++#include <net-snmp/library/default_store.h>
+ 
+ #include "GetIfInfo.h"
+ #include "Pctest.h"
+@@ -130,7 +130,7 @@
+ 
+ if (session.version == SNMP_DEFAULT_VERSION)
+   {
+-  session.version = ds_get_int(DS_LIBRARY_ID, DS_LIB_SNMPVERSION);
++  session.version = netsnmp_ds_get_int(NETSNMP_DS_LIBRARY_ID, NETSNMP_DS_LIB_SNMPVERSION);
+   }
+ 
+ /* make our engineID something other than what the localhost might
