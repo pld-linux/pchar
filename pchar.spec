@@ -31,7 +31,7 @@ poprzez sieæ.
 %patch0 -p1
 
 %build
-autoconf
+%{__autoconf}
 CXXFLAGS="%{rpmcflags} -fno-exceptions -fno-rtti -fno-implicit-templates"
 %configure \
 	--with-ipv6 \
