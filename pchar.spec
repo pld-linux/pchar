@@ -2,17 +2,18 @@ Summary:	Pchar: A Tool for Measuring Net Path Characteristics
 Summary(pl):	Pchar: Narzêdzie do okre¶lania charakterystyk po³±czeñ sieciowych
 Name:		pchar
 Version:	1.4
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://www.employees.org/~bmah/Software/pchar/%{name}-%{version}.tar.gz
 # Source0-md5:	e7b41a8eaf7972e1b19c214189c9ccef
 Patch0:		%{name}-ac_fixes.patch
+Patch1:		%{name}-build.patch
 URL:		http://www.employees.org/~bmah/Software/pchar/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
-BuildRequires:	ucd-snmp-devel >= 4.2.6
+BuildRequires:	net-snmp-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,6 +31,7 @@ poprzez sieæ.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__autoconf}
