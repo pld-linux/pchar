@@ -1,4 +1,4 @@
-Summary:	Pchar: A Tool for Measuring Net Path Characteristics 
+Summary:	Pchar: A Tool for Measuring Net Path Characteristics
 Summary(pl):	Pchar: Narzêdzie do okre¶lania charakterystyk po³±czeñ sieciowych
 Name:		pchar
 Version:	1.4
@@ -14,7 +14,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	ucd-snmp-devel >= 4.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%description 
+%description
 Pchar is a reimplementation of the pathchar utility written by Van
 Jacobson, formerly of Lawrence Berkeley Laboratories. Both programs
 attempt to characterize the bandwidth, latency, and loss of links
@@ -47,7 +47,7 @@ install pchar $RPM_BUILD_ROOT%{_bindir}/pchar
 install pchar.8 $RPM_BUILD_ROOT%{_mandir}/man8/pchar.8
 
 gzip -9nf README FAQ CHANGES
-	
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
