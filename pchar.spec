@@ -1,5 +1,5 @@
 Summary:	Pchar: A Tool for Measuring Net Path Characteristics
-Summary(pl.UTF-8):   Pchar: Narzędzie do określania charakterystyk połączeń sieciowych
+Summary(pl.UTF-8):	Pchar: Narzędzie do określania charakterystyk połączeń sieciowych
 Name:		pchar
 Version:	1.4
 Release:	7
