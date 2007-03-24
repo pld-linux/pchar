@@ -1,6 +1,6 @@
---- pchar-1.4/configure.in.orig	2004-04-04 16:11:59.000000000 +0200
-+++ pchar-1.4/configure.in	2004-04-04 16:28:46.664277424 +0200
-@@ -134,7 +134,7 @@
+--- pchar-1.5/configure.in.orig	2007-03-24 16:58:13.000000000 +0000
++++ pchar-1.5/configure.in	2007-03-24 16:58:44.000000000 +0000
+@@ -133,7 +133,7 @@
      if test "$with_ipv6" -a "$with_ipv6" != "yes" ; then
  	LDFLAGS="-L$with_ipv6/lib $LDFLAGS"
      fi
@@ -10,21 +10,19 @@
  
  dnl UCD SNMP support if desired.  If the user enabled --with-snmp,
 @@ -159,7 +159,7 @@
- 	LDFLAGS="-L$with_snmp/lib $LDFLAGS"
  	CPPFLAGS="-I$with_snmp/include $CPPFLAGS"
      fi
--    AC_CHECK_LIB(snmp, snmp_sess_init)
-+    AC_CHECK_LIB(netsnmp, snmp_sess_init)
+     AC_CHECK_LIB(crypto, des_cbc_encrypt)
+-    AC_CHECK_LIB(snmp, snmp_sess_init,,,-lcrypto)
++    AC_CHECK_LIB(netsnmp, snmp_sess_init,,,-lcrypto)
  fi
  
  dnl pcap support if desired.  If the user enabled --with-pcap,
---- pchar-1.4/pc.h.orig	2001-06-07 17:01:41.000000000 +0200
-+++ pchar-1.4/pc.h	2004-04-04 16:32:55.534443408 +0200
-@@ -98,14 +98,16 @@
- #define ICMP_UNREACH_FILTER_PROHIB	ICMP_PKT_FILTERED
- 
- #define ICMP_TIMXCEED		ICMP_TIME_EXCEEDED
-+#endif /* glibc */
+--- pchar-1.5/pc.h.orig	2007-03-24 17:25:18.000000000 +0000
++++ pchar-1.5/pc.h	2007-03-24 17:25:59.000000000 +0000
+@@ -75,11 +75,13 @@
+ // the more widely-used sockets API standards here.
+ #ifdef linux
  
 +#if (!(defined(__GLIBC__) && (__GLIBC__ >= 2))) || (defined _POSIX_SOURCE || defined _POSIX_C_SOURCE || defined _XOPEN_SOURCE || defined _XOPEN_SOURCE_EXTENDED || defined _GNU_SOURCE || defined _SVID_SOURCE)
  // UDP
@@ -34,10 +32,8 @@
  #define uh_sum			check
 +#endif
  
--#endif /* glibc */
  #endif /* linux */
  
- // Make sure we have a definition for the maximum IP packet size.
 --- pchar-1.4/GetIfInfo.cc.orig	2001-03-26 19:59:55.000000000 +0200
 +++ pchar-1.4/GetIfInfo.cc	2004-04-04 16:36:20.358305448 +0200
 @@ -24,15 +24,15 @@
