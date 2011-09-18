@@ -1,0 +1,16 @@
+- modified icu/ac264-hack.patch
+--- pchar-1.5/configure.in.orig	2010-10-30 18:42:59.558065157 +0200
++++ pchar-1.5/configure.in	2010-10-30 18:43:08.552229974 +0200
+@@ -13,6 +13,12 @@ AC_ARG_WITH(pcap, [  --with-pcap		  use 
+ AC_ARG_WITH(snmp, [  --with-snmp		  use UCD SNMP library])
+ AC_ARG_WITH(suid, [  --with-suid		  install SUID root])
+ 
++dnl this AC_LINK_IFELSE is early here so that ac 2.64 wouldn't define the `ac_fn_cxx_try_link' in if..else condition
++dnl this is a hack but at this time i don't know what is the real fix
++AC_LANG_PUSH([C++])
++AC_LINK_IFELSE([AC_LANG_PROGRAM()])
++AC_LANG_POP([C++])
++
+ dnl Checks for programs.
+ AC_PROG_AWK
+ AC_PROG_CXX

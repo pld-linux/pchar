@@ -10,6 +10,7 @@ Source0:	http://www.employees.org/~bmah/Software/pchar/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-build.patch
 Patch2:		%{name}-gcc4.patch
+Patch3:		ac264-hack.patch
 URL:		http://www.employees.org/~bmah/Software/pchar/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -34,6 +35,7 @@ poprzez sieć.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.* .
