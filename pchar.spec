@@ -5,13 +5,13 @@ Version:	1.5
 Release:	1
 License:	BSD
 Group:		Applications/Networking
-Source0:	http://www.employees.org/~bmah/Software/pchar/%{name}-%{version}.tar.gz
+Source0:	http://www.kitchenlab.org/www/bmah/Software/pchar/%{name}-%{version}.tar.gz
 # Source0-md5:	1199a30db4b128b9acbc6979ca9b53e6
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-build.patch
 Patch2:		%{name}-gcc4.patch
 Patch3:		ac264-hack.patch
-URL:		http://www.employees.org/~bmah/Software/pchar/
+URL:		http://www.kitchenlab.org/www/bmah/Software/pchar/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
